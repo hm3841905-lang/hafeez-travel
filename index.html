@@ -1,40 +1,821 @@
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Hafeez Travel - کراچی سے پاکستان بھر کے لیے سفری بکنگ">
-<title>Hafeez Travel | Online Booking</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Nastaliq Urdu",sans-serif;background:#f5f7fa;color:#17202a}
-header{background:linear-gradient(135deg,#0b6b4f,#123c69);color:#fff;padding:28px 18px;text-align:center}
-header h1{margin:0;font-size:34px}header p{margin:8px 0 0;font-size:18px}
-.container{max-width:900px;margin:auto;padding:18px}
-.card{background:#fff;border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 5px 22px #00000012}
-h2{margin-top:0;color:#0b6b4f}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-label{display:block;font-weight:bold;margin-bottom:6px}input,select,textarea{width:100%;padding:13px;border:1px solid #d5dbe0;border-radius:10px;font-size:16px}
-textarea{min-height:90px}.full{grid-column:1/-1}
-.btn{display:block;width:100%;border:0;border-radius:12px;padding:15px;font-size:18px;font-weight:bold;cursor:pointer;text-align:center;text-decoration:none}
-.whatsapp{background:#25D366;color:white}.call{background:#123c69;color:white;margin-top:10px}
-.routes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.route{padding:16px;border-radius:14px;background:#eef7f3;text-align:center}.route b{display:block;color:#0b6b4f;font-size:19px;margin-bottom:6px}
-footer{text-align:center;background:#17202a;color:#fff;padding:20px;margin-top:25px}
-@media(max-width:650px){.grid,.routes{grid-template-columns:1fr}.container{padding:10px}header h1{font-size:28px}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hafeez Travel - کراچی سے پاکستان بھر کے لیے محفوظ اور آسان سفر" />
+  <title>Hafeez Travel | پاکستان بھر کا سفر</title>
+  <style>
+    :root {
+      --primary: #0b6b4f;
+      --primary-dark: #073d31;
+      --secondary: #123c69;
+      --accent: #ffb703;
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --muted: #5c6877;
+      --line: #dde5ef;
+      --success: #25d366;
+      --shadow: 0 18px 40px rgba(17, 34, 70, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, "Noto Nastaliq Urdu", sans-serif;
+      background: var(--bg);
+      color: #1b2430;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(1140px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      padding: 14px 0;
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      font-size: 1.3rem;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .mini-btn, .primary-btn, .secondary-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .mini-btn {
+      padding: 10px 14px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+    }
+
+    .primary-btn {
+      padding: 15px 26px;
+      background: var(--success);
+      color: #fff;
+      box-shadow: 0 12px 20px rgba(37, 211, 102, 0.28);
+    }
+
+    .secondary-btn {
+      padding: 15px 26px;
+      background: var(--secondary);
+      color: #fff;
+      box-shadow: 0 12px 20px rgba(18, 60, 105, 0.28);
+    }
+
+    .primary-btn:hover, .secondary-btn:hover, .mini-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero {
+      background: linear-gradient(180deg, rgba(11,107,79,0.06), rgba(18,60,105,0.03)), #f9fbff;
+      padding: 56px 0 30px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(11,107,79,0.08);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 1.2;
+      color: #122033;
+    }
+
+    .hero p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 620px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 26px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat-box {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 16px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-number {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, #fff, #eef5ff);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-image {
+      background: linear-gradient(135deg, rgba(11,107,79,0.08), rgba(18,60,105,0.1));
+      padding: 28px;
+    }
+
+    .route-panel {
+      padding: 22px;
+      background: #fff;
+    }
+
+    .route-panel h3 {
+      margin: 0 0 18px;
+      font-size: 1.25rem;
+    }
+
+    .route-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .route-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      background: #f4f8fb;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .route-item strong { color: var(--secondary); }
+
+    .section {
+      padding: 32px 0 12px;
+    }
+
+    .section-head {
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .section-head h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.9rem, 2.5vw, 2.6rem);
+      color: #132534;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .feature-grid, .route-grid, .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px 20px;
+      box-shadow: 0 10px 24px rgba(16, 33, 58, 0.04);
+    }
+
+    .icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-size: 1.5rem;
+      background: rgba(11,107,79,0.1);
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .route-grid .card {
+      padding: 20px 18px;
+    }
+
+    .route-price {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 1.3rem;
+    }
+
+    .booking-wrap {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 22px;
+      align-items: stretch;
+      padding: 12px 0 30px;
+    }
+
+    .booking-info, .booking-form-card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .booking-info {
+      padding: 24px;
+      background: linear-gradient(180deg, #f9fbff, #fff);
+    }
+
+    .booking-info h3 {
+      margin: 0 0 12px;
+      font-size: 1.8rem;
+    }
+
+    .contact-list {
+      margin-top: 22px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #f6f9fc;
+    }
+
+    .contact-item strong {
+      display: block;
+    }
+
+    .booking-form-card {
+      padding: 24px;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #1b2430;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-size: 1rem;
+      background: #fbfdff;
+      color: #1b2430;
+      resize: vertical;
+      font-family: inherit;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid rgba(11,107,79,0.16);
+      border-color: var(--primary);
+    }
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .faq-item {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+    }
+
+    .faq-item h4 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    footer {
+      background: #101b2d;
+      color: rgba(255,255,255,0.86);
+      margin-top: 32px;
+      padding: 26px 0;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand {
+      font-weight: 800;
+      color: #fff;
+      font-size: 1.15rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid, .booking-wrap, .feature-grid, .service-grid, .route-grid, .faq-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner, .footer-grid {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .top-actions, .cta-row {
+        justify-content: center;
+      }
+
+      .form-grid, .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding-top: 26px;
+      }
+    }
+  </style>
 </head>
 <body>
-<header><h1>✈️ Hafeez Travel</h1><p>محفوظ اور آسان سفری بکنگ</p></header>
-<div class="container">
-<div class="card"><h2>🚗 ہماری سفری سروس</h2><p>کراچی سے مختلف شہروں کے لیے گاڑی بک کروائیں۔ اپنی معلومات درج کریں اور WhatsApp پر بکنگ بھیج دیں۔</p><a class="btn whatsapp" href="https://wa.me/923452597849" target="_blank">📲 WhatsApp پر بکنگ کریں</a><a class="btn call" href="tel:03452597849">📞 کال کریں: 03452597849</a></div>
-<div class="card"><h2>💰 سفری ریٹس</h2><div class="routes"><div class="route"><b>کراچی → لاہور</b>Rs. 50,000</div><div class="route"><b>کراچی → اسلام آباد / مری</b>Rs. 60,000</div><div class="route"><b>کراچی → مظفرآباد</b>Rs. 70,000</div></div></div>
-<div class="card"><h2>📝 آن لائن بکنگ</h2><form id="bookingForm"><div class="grid"><div><label>نام</label><input id="name" required placeholder="اپنا نام"></div><div><label>موبائل نمبر</label><input id="phone" required type="tel" placeholder="03xxxxxxxxx"></div><div><label>کہاں سے</label><input id="from" value="کراچی" required></div><div><label>کہاں جانا ہے</label><input id="to" required placeholder="مثلاً مظفرآباد"></div><div><label>سفر کی تاریخ</label><input id="date" required type="date"></div><div><label>مسافروں کی تعداد</label><input id="people" required type="number" min="1" value="1"></div><div class="full"><label>اضافی معلومات</label><textarea id="notes" placeholder="کوئی ضروری بات لکھیں"></textarea></div><div class="full"><button class="btn whatsapp" type="submit">WhatsApp پر بکنگ بھیجیں</button></div></div></form></div>
-</div>
-<footer><div>Hafeez Travel</div><div>📱 03452597849</div></footer>
-<script>document.getElementById('bookingForm').addEventListener('submit',function(e){e.preventDefault();const msg=`السلام علیکم Hafeez Travel، مجھے گاڑی بک کروانی ہے۔
-نام: ${document.getElementById('name').value}
-موبائل: ${document.getElementById('phone').value}
-کہاں سے: ${document.getElementById('from').value}
-کہاں جانا ہے: ${document.getElementById('to').value}
-تاریخ: ${document.getElementById('date').value}
-مسافر: ${document.getElementById('people').value}
-اضافی معلومات: ${document.getElementById('notes').value}`;window.open('https://wa.me/923452597849?text='+encodeURIComponent(msg),'_blank');});</script>
-</body></html>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <div class="brand-badge">✈️</div>
+        <span>Hafeez Travel</span>
+      </div>
+
+      <div class="top-actions">
+        <a class="mini-btn" href="#routes">سفر کے راستے</a>
+        <a class="mini-btn" href="#booking">بکنگ</a>
+        <a class="mini-btn" href="tel:03452597849">📞 0345-2597849</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">محفوظ | قابلِ اعتماد | فوری سروس</span>
+          <h1>پاکستان بھر کے لیے آسان اور محفوظ سفر</h1>
+          <p>
+            کراچی سے لاہور، اسلام آباد، مری، ڈیرہ غازی خان، مظفرآباد اور دیگر شہروں کے لیے
+            بہترین ٹرانسپورٹ سروس، پراجیٹد قیمتیں اور فوری بکنگ۔
+          </p>
+
+          <div class="cta-row">
+            <a class="primary-btn" href="https://wa.me/923452597849?text=السلام%20علیکم%20Hafeez%20Travel%2C%20مجھے%20سفر%20بک%20کرنا%20ہے" target="_blank">
+              💬 WhatsApp پر بکنگ
+            </a>
+            <a class="secondary-btn" href="tel:03452597849">📞 کال کریں</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat-box">
+              <span class="stat-number">12+</span>
+              <span class="stat-label">شہروں کی سروس</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">24/7</span>
+              <span class="stat-label">سپورٹ</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">500+</span>
+              <span class="stat-label">خوشنود مسافر</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-image">
+            <svg viewBox="0 0 520 340" role="img" aria-label="Travel illustration" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="sky" x1="0" x2="1">
+                  <stop offset="0%" stop-color="#dff6f1"/>
+                  <stop offset="100%" stop-color="#dfeafe"/>
+                </linearGradient>
+              </defs>
+              <rect width="520" height="340" rx="30" fill="url(#sky)"/>
+              <circle cx="104" cy="80" r="42" fill="#ffd166"/>
+              <path d="M35 232C85 185 140 183 186 218L265 268H90L35 232Z" fill="#8ed3bb"/>
+              <path d="M218 158H418L470 230H162L218 158Z" fill="#2a6ab5"/>
+              <rect x="240" y="178" width="150" height="66" rx="12" fill="#123c69"/>
+              <rect x="274" y="134" width="66" height="42" rx="10" fill="#d9ecff"/>
+              <circle cx="284" cy="248" r="18" fill="#1d2128"/>
+              <circle cx="404" cy="248" r="18" fill="#1d2128"/>
+              <path d="M0 280H520" stroke="#b9d2ef" stroke-width="10"/>
+              <line x1="76" y1="166" x2="154" y2="114" stroke="#1aa678" stroke-width="10" stroke-linecap="round"/>
+              <line x1="154" y1="114" x2="228" y2="170" stroke="#1aa678" stroke-width="10" stroke-linecap="round"/>
+            </svg>
+          </div>
+
+          <div class="route-panel">
+            <h3>مقبول راستے</h3>
+            <div class="route-list">
+              <div class="route-item">
+                <span>کراچی → لاہور</span>
+                <strong>Rs. 50,000</strong>
+              </div>
+              <div class="route-item">
+                <span>کراچی → اسلام آباد</span>
+                <strong>Rs. 60,000</strong>
+              </div>
+              <div class="route-item">
+                <span>کراچی → مظفرآباد</span>
+                <strong>Rs. 70,000</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>ہماری خدمات</h2>
+          <p>آپ کے سفر کو آسان، محفوظ اور خوشگوار بنانے کے لیے تیار خدمت</p>
+        </div>
+
+        <div class="service-grid">
+          <div class="card">
+            <div class="icon">🚗</div>
+            <h3>پرائیوٹ سفر</h3>
+            <p>خاندان، دوست اور کاروباری افراد کے لیے محفوظ اور آرام دہ سفر۔</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🚌</div>
+            <h3>گروپ ٹرپ</h3>
+            <p>مختلف ٹورز، بس ٹرپس اور گروپ سفر کے لیے موزوں پیکیج۔</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">📍</div>
+            <h3>فیئر سروس</h3>
+            <p>آپ کے مقام تک آسان رسائی، مناسب قیمت اور واضح معلومات۔</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="routes">
+      <div class="container">
+        <div class="section-head">
+          <h2>مشہور روٹس</h2>
+          <p>ہماری زیادہ طلب کردہ سڑکوں کے لیے دست یاب نرخ</p>
+        </div>
+
+        <div class="route-grid">
+          <div class="card">
+            <h3>کراچی → لاہور</h3>
+            <p>معیاری سفر، آرام دہ سٹائل اور مناسب وقت پر رسائی۔</p>
+            <span class="route-price">Rs. 50,000</span>
+          </div>
+
+          <div class="card">
+            <h3>کراچی → اسلام آباد</h3>
+            <p>معاشی و کاروباری سفر کے لیے بہترین آپشن۔</p>
+            <span class="route-price">Rs. 60,000</span>
+          </div>
+
+          <div class="card">
+            <h3>کراچی → مری</h3>
+            <p>خوشگوار سفر اور مہلک سفر کے لیے ترجیحی خدمات۔</p>
+            <span class="route-price">Rs. 62,000</span>
+          </div>
+
+          <div class="card">
+            <h3>کراچی → ڈیرہ غازی خان</h3>
+            <p>حسنِ سفر اور تیز رسائی کے ساتھ قابلِ اعتماد ڈرائیور۔</p>
+            <span class="route-price">Rs. 68,000</span>
+          </div>
+
+          <div class="card">
+            <h3>کراچی → مظفرآباد</h3>
+            <p>ہر موسم میں محفوظ اور خوشگوار سفر کے لیے سروس۔</p>
+            <span class="route-price">Rs. 70,000</span>
+          </div>
+
+          <div class="card">
+            <h3>کراچی → کلوری</h3>
+            <p>فلیٹ، جدید گاڑی اور قابلِ اعتمادی خدمت کے ساتھ سفر۔</p>
+            <span class="route-price">Rs. 72,000</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="booking">
+      <div class="container booking-wrap">
+        <div class="booking-info">
+          <h3>بکنگ کے لیے رابطہ</h3>
+          <p>
+            اپنی سفر کی تفصیلات لکھیں، ہمارے فیملی ٹیم آپ کو فوری جواب دے گی۔
+            آپ کے سفر کی تاریخ، مقام، تعداد اور اضافی معلومات درج کریں۔
+          </p>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <span>📲</span>
+              <div>
+                <strong>WhatsApp</strong>
+                <span>+92 345 2597849</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span>📞</span>
+              <div>
+                <strong>کال</strong>
+                <span>0345-2597849</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <span>🕒</span>
+              <div>
+                <strong>سپورٹ</strong>
+                <span>روزانہ 24 گھنٹے</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking-form-card">
+          <h3 style="margin-top:0; margin-bottom:16px;">بکنگ فارم</h3>
+          <form id="bookingForm">
+            <div class="form-grid">
+              <div>
+                <label for="name">نام</label>
+                <input id="name" name="name" type="text" placeholder="اپنا نام درج کریں" required />
+              </div>
+
+              <div>
+                <label for="phone">موبائل نمبر</label>
+                <input id="phone" name="phone" type="tel" placeholder="03xxxxxxxxx" required />
+              </div>
+
+              <div>
+                <label for="from">کہاں سے</label>
+                <input id="from" name="from" type="text" value="کراچی" required />
+              </div>
+
+              <div>
+                <label for="to">کہاں جانا ہے</label>
+                <input id="to" name="to" type="text" placeholder="مثلاً لاہور، اسلام آباد" required />
+              </div>
+
+              <div>
+                <label for="date">سفر کی تاریخ</label>
+                <input id="date" name="date" type="date" required />
+              </div>
+
+              <div>
+                <label for="people">مسافروں کی تعداد</label>
+                <input id="people" name="people" type="number" min="1" value="1" required />
+              </div>
+
+              <div class="full-width">
+                <label for="tripType">سفر کی قسم</label>
+                <select id="tripType" name="tripType">
+                  <option value="پرائیوٹ سفر">پرائیوٹ سفر</option>
+                  <option value="گروپ ٹرپ">گروپ ٹرپ</option>
+                  <option value="کارپوریشن/بزنس سفر">کارپوریشن/بزنس سفر</option>
+                </select>
+              </div>
+
+              <div class="full-width">
+                <label for="notes">اضافی ��علومات</label>
+                <textarea id="notes" name="notes" rows="4" placeholder="مثلاً: کتنی گاڑی، وقت، اضافی ضروریات"></textarea>
+              </div>
+            </div>
+
+            <button class="primary-btn" type="submit" style="width:100%; border:0; cursor:pointer;">
+              WhatsApp پر معلومات بھیجیں
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>کیا آپ ہمارے ساتھ سفر کرتے ہیں؟</h2>
+          <p>ہمیں منتخب کرنے کی چند بڑی وجوہات</p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="card">
+            <div class="icon">✅</div>
+            <h3>قابلِ اعتماد</h3>
+            <p>ہماری خدمت سست رفتار سے زیادہ قابلِ اعتماد اور واضح ہے��</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">💷</div>
+            <h3>مناسب قیمت</h3>
+            <p>مسافروں کے لیے شفاف قیمتیں اور منصفانہ ٹریننگ۔</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">🛡️</div>
+            <h3>محفوظ سفر</h3>
+            <p>بازیافت، ہدایات اور دیکھ بھال کے ساتھ محفوظ سفر۔</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>عمومی سوالات</h2>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-item">
+            <h4>کیا آپ منزل تک ٹرانسپورٹ فراہم کرتے ہیں؟</h4>
+            <p>ہاں، ہم پاکستان بھر میں مختلف شہروں کے لی�� سفر کی خدمات فراہم کرتے ہیں۔</p>
+          </div>
+
+          <div class="faq-item">
+            <h4>بکنگ میں کتنے دن پہلے رابطہ کرنا بہتر ہے؟</h4>
+            <p>بہترین طریقہ یہ ہے کہ آپ 1 سے 3 دن پہلے بکنگ کرافٹ کر دیں۔</p>
+          </div>
+
+          <div class="faq-item">
+            <h4>کیا ہم گاڑی کا انتخاب کر سکتے ہیں؟</h4>
+            <p>ہاں، آپ اپنی ترجیح کے مطابق سفر کی قسم اور گاڑی کا انتخاب کر سکتے ہیں۔</p>
+          </div>
+
+          <div class="faq-item">
+            <h4>کیا ہم گھر بیٹھے WhatsApp پر بکنگ کر سکتے ہیں؟</h4>
+            <p>جی ہاں، آپ ہمارا WhatsApp رابطہ استعمال کر کے فوری بکنگ کر سکتے ہیں۔</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div class="footer-brand">Hafeez Travel</div>
+      <div>📱 0345-2597849 | 📍 کراچی، پاکستان</div>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('bookingForm');
+    const dateInput = document.getElementById('date');
+
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    dateInput.min = `${yyyy}-${mm}-${dd}`;
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const from = document.getElementById('from').value.trim();
+      const to = document.getElementById('to').value.trim();
+      const date = document.getElementById('date').value;
+      const people = document.getElementById('people').value;
+      const tripType = document.getElementById('tripType').value;
+      const notes = document.getElementById('notes').value.trim();
+
+      const message = `السلام علیکم Hafeez Travel، مجھے سفر بک کروانا ہے۔\n\nنام: ${name}\nموبائل: ${phone}\nکہاں سے: ${from}\nکہاں جانا ہے: ${to}\nتاریخ: ${date}\nمسافر: ${people}\nسفر کی قسم: ${tripType}\nاضافی معلومات: ${notes || 'کوئی نہیں'}`;
+
+      const url = 'https://wa.me/923452597849?text=' + encodeURIComponent(message);
+      window.open(url, '_blank');
+    });
+  </script>
+</body>
+</html>
