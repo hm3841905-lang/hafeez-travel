@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hafeez Travel - کراچی سے پاکستان بھر کے لیے سفری بکنگ">
+<title>Hafeez Travel | Online Booking</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Nastaliq Urdu",sans-serif;background:#f5f7fa;color:#17202a}
+header{background:linear-gradient(135deg,#0b6b4f,#123c69);color:#fff;padding:28px 18px;text-align:center}
+header h1{margin:0;font-size:34px}header p{margin:8px 0 0;font-size:18px}
+.container{max-width:900px;margin:auto;padding:18px}
+.card{background:#fff;border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 5px 22px #00000012}
+h2{margin-top:0;color:#0b6b4f}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:block;font-weight:bold;margin-bottom:6px}input,select,textarea{width:100%;padding:13px;border:1px solid #d5dbe0;border-radius:10px;font-size:16px}
+textarea{min-height:90px}.full{grid-column:1/-1}
+.btn{display:block;width:100%;border:0;border-radius:12px;padding:15px;font-size:18px;font-weight:bold;cursor:pointer;text-align:center;text-decoration:none}
+.whatsapp{background:#25D366;color:white}.call{background:#123c69;color:white;margin-top:10px}
+.routes{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.route{padding:16px;border-radius:14px;background:#eef7f3;text-align:center}.route b{display:block;color:#0b6b4f;font-size:19px;margin-bottom:6px}
+footer{text-align:center;background:#17202a;color:#fff;padding:20px;margin-top:25px}
+@media(max-width:650px){.grid,.routes{grid-template-columns:1fr}.container{padding:10px}header h1{font-size:28px}}
+</style>
+</head>
+<body>
+<header><h1>✈️ Hafeez Travel</h1><p>محفوظ اور آسان سفری بکنگ</p></header>
+<div class="container">
+<div class="card"><h2>🚗 ہماری سفری سروس</h2><p>کراچی سے مختلف شہروں کے لیے گاڑی بک کروائیں۔ اپنی معلومات درج کریں اور WhatsApp پر بکنگ بھیج دیں۔</p><a class="btn whatsapp" href="https://wa.me/923452597849" target="_blank">📲 WhatsApp پر بکنگ کریں</a><a class="btn call" href="tel:03452597849">📞 کال کریں: 03452597849</a></div>
+<div class="card"><h2>💰 سفری ریٹس</h2><div class="routes"><div class="route"><b>کراچی → لاہور</b>Rs. 50,000</div><div class="route"><b>کراچی → اسلام آباد / مری</b>Rs. 60,000</div><div class="route"><b>کراچی → مظفرآباد</b>Rs. 70,000</div></div></div>
+<div class="card"><h2>📝 آن لائن بکنگ</h2><form id="bookingForm"><div class="grid"><div><label>نام</label><input id="name" required placeholder="اپنا نام"></div><div><label>موبائل نمبر</label><input id="phone" required type="tel" placeholder="03xxxxxxxxx"></div><div><label>کہاں سے</label><input id="from" value="کراچی" required></div><div><label>کہاں جانا ہے</label><input id="to" required placeholder="مثلاً مظفرآباد"></div><div><label>سفر کی تاریخ</label><input id="date" required type="date"></div><div><label>مسافروں کی تعداد</label><input id="people" required type="number" min="1" value="1"></div><div class="full"><label>اضافی معلومات</label><textarea id="notes" placeholder="کوئی ضروری بات لکھیں"></textarea></div><div class="full"><button class="btn whatsapp" type="submit">WhatsApp پر بکنگ بھیجیں</button></div></div></form></div>
+</div>
+<footer><div>Hafeez Travel</div><div>📱 03452597849</div></footer>
+<script>document.getElementById('bookingForm').addEventListener('submit',function(e){e.preventDefault();const msg=`السلام علیکم Hafeez Travel، مجھے گاڑی بک کروانی ہے۔
+نام: ${document.getElementById('name').value}
+موبائل: ${document.getElementById('phone').value}
+کہاں سے: ${document.getElementById('from').value}
+کہاں جانا ہے: ${document.getElementById('to').value}
+تاریخ: ${document.getElementById('date').value}
+مسافر: ${document.getElementById('people').value}
+اضافی معلومات: ${document.getElementById('notes').value}`;window.open('https://wa.me/923452597849?text='+encodeURIComponent(msg),'_blank');});</script>
+</body></html>
